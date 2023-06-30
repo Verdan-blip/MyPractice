@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,16 +23,19 @@ class MainActivity : AppCompatActivity() {
 
         validateButton?.setOnClickListener {
             val name = editTextName.text.toString()
-            val height = editTextHeight.text.toString().toInt()
-            val weight = editTextWeight.text.toString().toInt()
-            val age = editTextAge.text.toString().toInt()
+            try {
+                val height = editTextHeight.text.toString().toInt()
+                val weight = editTextWeight.text.toString().toInt()
+                val age = editTextAge.text.toString().toInt()
 
-            if (!validateFields(name, height, weight, age)) {
-                resultText.text = "Данные введены некорректно"
-            } else {
-                val result: Float = calcCalorieAllowance(name, height, weight, age)
-                resultText.text = String.format("Ответ: $result")
-            }
+                if (!validateFields(name, height, weight, age)) {
+                    resultText.text = "Данные введены некорректно"
+                } else {
+                    val result: Float = calcCalorieAllowance(name, height, weight, age)
+                    resultText.text = String.format("Ответ: $result")
+                }
+
+            } catch (ex: NumberFormatException) { }
         }
 
     }
