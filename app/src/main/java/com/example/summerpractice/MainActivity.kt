@@ -9,6 +9,9 @@ import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
 
+    private val INVALID_FILEDS_MESSAGE = "Данные введены некорректно"
+    private val EMPTY_FIELDS_MESSAGE = "Не все поля были заполнены!"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,13 +32,15 @@ class MainActivity : AppCompatActivity() {
                 val age = editTextAge.text.toString().toInt()
 
                 if (!validateFields(name, height, weight, age)) {
-                    resultText.text = "Данные введены некорректно"
+                    resultText.text = INVALID_FILEDS_MESSAGE
                 } else {
                     val result: Float = calcCalorieAllowance(name, height, weight, age)
                     resultText.text = String.format("Ответ: $result")
                 }
 
-            } catch (ex: NumberFormatException) { }
+            } catch (ex: NumberFormatException) {
+                resultText.text = EMPTY_FIELDS_MESSAGE
+            }
         }
 
     }
