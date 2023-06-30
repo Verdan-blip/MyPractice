@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SummerPractice</string>
+    <string name="invalid_fields_message">Данные введены некорректно!</string>
+    <string name="empty_fields_message">Не все поля были заполнены!</string>
 </resources>
