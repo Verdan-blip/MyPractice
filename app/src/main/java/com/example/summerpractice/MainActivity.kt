@@ -9,9 +9,6 @@ import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
 
-    private val INVALID_FILEDS_MESSAGE = "Данные введены некорректно"
-    private val EMPTY_FIELDS_MESSAGE = "Не все поля были заполнены!"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,30 +29,34 @@ class MainActivity : AppCompatActivity() {
                 val age = editTextAge.text.toString().toInt()
 
                 if (!validateFields(name, height, weight, age)) {
-                    resultText.text = INVALID_FILEDS_MESSAGE
+                    resultText.text = getString(R.string.invalid_fields_message)
                 } else {
                     val result: Float = calcCalorieAllowance(name, height, weight, age)
                     resultText.text = String.format("Ответ: $result")
                 }
 
             } catch (ex: NumberFormatException) {
-                resultText.text = EMPTY_FIELDS_MESSAGE
+                resultText.text = getString(R.string.empty_fields_message)
             }
         }
 
     }
 
-    private fun validateFields(name: String, height: Int,
-                               weight: Int, age: Int) : Boolean {
-        return name.length in 1..49 &&
+    private fun validateFields(name: String,
+                               height: Int,
+                               weight: Int,
+                               age: Int
+    ) : Boolean =
+        name.length in 1..49 &&
                 height > 0 && height < 250 &&
                 weight > 0 && weight < 250 &&
                 age > 0 && age < 150
-    }
 
-    private fun calcCalorieAllowance(name: String, height: Int,
-                                     weight: Int, age: Int) : Float {
-        return weight * 10 + height * 6.25f + age * 5 + name.length
-    }
+    private fun calcCalorieAllowance(name: String,
+                                     height: Int,
+                                     weight: Int,
+                                     age: Int
+    ) : Float =
+        weight * 10 + height * 6.25f + age * 5 + name.length
 
 }
