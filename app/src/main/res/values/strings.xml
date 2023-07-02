@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SummerPractice</string>
+    <string name="not_found_parent_fragment_name_message">Unrecognized parent name</string>
 </resources>
