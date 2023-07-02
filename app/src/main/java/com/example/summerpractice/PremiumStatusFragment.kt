@@ -15,9 +15,11 @@ class PremiumStatusFragment : Fragment(R.layout.fragment_premium_status) {
 
         fragmentBinding = FragmentPremiumStatusBinding.bind(view)
 
-        val arg = arguments?.getString(ARG_KEY) ?: getString(R.string.not_found_parent_fragment_name_message)
+        val arg = arguments?.getString(ARG_KEY)
+            ?: getString(R.string.not_found_parent_fragment_name_message)
 
-        Snackbar.make(fragmentBinding!!.root, arg, Snackbar.LENGTH_LONG).show()
+        val root = fragmentBinding?.root as View
+        Snackbar.make(root, arg, Snackbar.LENGTH_LONG).show()
 
     }
 
